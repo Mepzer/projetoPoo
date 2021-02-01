@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'jacoco'
+apply plugin: 'application'
+
+
+mainClassName = 'ProjetoPOO.Main'
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testImplementation     'junit:junit:4.13'
+    
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'ProjetoPOO.ui.entry.entryFrame'
+    }
+    from {
+        configurations.compileClasspath.collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
